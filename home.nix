@@ -9,8 +9,6 @@
     hypr = "hypr";
     foot = "foot";
     themes = "themes";
-    rofi = "rofi";
-    waybar = "waybar";
     nvim = "nvim";
   };
 in {
@@ -21,11 +19,12 @@ in {
   home.username = "relaxou";
   home.homeDirectory = "/home/relaxou";
   home.stateVersion = "26.05";
+
   programs.git = {
     enable = true;
-    userName = "Fabio de Almeida";
-    userEmail = "fabioalmeida2004@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Fabio de Almeida";
+      user.email = "fabioalmeida2004@gmail.com";
       init.defaultBranch = "main";
       core.editor = "nvim";
     };
@@ -62,8 +61,6 @@ in {
     cargo
     nodejs
     gcc
-    rofi
-    waybar
     foot
     (pkgs.writeShellApplication {
       name = "ns";

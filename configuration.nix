@@ -68,6 +68,8 @@
     xwayland.enable = true;
   };
 
+  programs.firefox.enable = true;
+
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -76,6 +78,18 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
+
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 10d";
+  };
+  nix.settings.auto-optimise-store = true;
+
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   dates = "weekly";
+  # };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   system.stateVersion = "26.05";
