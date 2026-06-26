@@ -1,0 +1,100 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": [
+    // "custom/stream_status",
+    "hyprland/workspaces"
+  ],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "pulseaudio",
+    "battery",
+    "network",
+    "cpu",
+    "memory",
+    "tray",
+    // "custom/lock",
+    "custom/swaync",
+    "custom/power_menu",
+  ],
+  "hyprland/workspaces": {
+    "format": "{name} {icon}",
+    "format-icons": {
+      "active": "",
+      "default": ""
+    },
+    "cursor": true,
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+  "clock": {
+    "timezone": "America/Sao_Paulo",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%d - %H:%M}"
+  },
+  "network": {
+    "format-wifi": "󰤢 ",
+    "format-ethernet": "󰈀 ",
+    "format-disconnected": "󰤠 ",
+    "interval": 5,
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+  },
+  "memory": {
+    "interval": 30,
+    "format": "  {used:0.1f}G/{total:0.1f}G"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", " "]
+    },
+    "on-click": "pavucontrol"
+  },
+  "custom/lock": {
+    "tooltip": false,
+    "on-click": "sh -c '(sleep 0.5s; hyprlock)' & disown",
+    "format": "",
+  },
+  // "custom/stream_status": {
+  //     "format": "{text}",
+  //     "exec": "~/.local/scripts/stream_status",
+  //     "interval": 5,
+  //     "return-type": "json",
+  //     "tooltip": true
+  // },
+  "custom/power_menu": {
+    "tooltip": false,
+    "on-click": "wlogout -b 5",
+    "format": "⏻",
+  },
+  "custom/swaync": {
+    "tooltip": true,
+    "tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb Toggle",
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
+  }
+}
+

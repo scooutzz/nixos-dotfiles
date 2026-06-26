@@ -1,0 +1,101 @@
+configuration {
+  modi: "drun";
+  show-icons: true;
+  drun-display-format: "{name}";
+  hover-select: true;
+  me-select-entry: "MouseSecondary";
+  me-accept-entry: "MousePrimary";
+  kb-row-left: "Control+h";
+  kb-row-down: "Control+j";
+  kb-row-up: "Control+k";
+  kb-row-right: "Control+l";
+  kb-accept-entry: "Return,KP_Enter";
+  kb-remove-to-eol: "";
+  kb-remove-char-back: "BackSpace,Shift+BackSpace";
+  kb-mode-complete: "";
+}
+
+/* ---- Global properties ---- */ 
+@import "~/.config/rofi/applets/shared/colors.rasi"
+@import "~/.config/rofi/applets/shared/fonts.rasi"
+
+/* ---- Window ---- */
+window {
+  enabled: true;
+  fullscreen: false;
+  width: 75%; 
+  transparency: "real";
+  cursor: "default";
+  spacing: 0px;
+  padding: 0px;
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: @selected;
+  background-color: @background;
+}
+
+/* ---- Mainbox ---- */
+mainbox {
+  enabled: true;
+  children: [ "listview" ];
+  background-color: transparent;
+}
+
+/* ---- Listview ---- */
+listview {
+  enabled: true;
+	expand: false;
+  columns: 5;
+  lines: 1;
+  spacing: 4px;
+  padding: 8px;
+  cycle: true;
+  dynamic: true;
+  scrollbar: false;
+  layout: vertical;
+  reverse: false;
+  fixed-height: false;
+  fixed-columns: false;
+  cursor: "default";
+  background-color: transparent;
+  text-color: @foreground;
+}
+
+/* ---- Element ---- */
+element {
+  enabled: true;
+  orientation: vertical;
+  spacing: 0px;
+  padding: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: transparent;
+  text-color: @foreground;
+}
+
+element selected.normal {
+  background-color: @selected;
+  text-color: @background;
+}
+
+/* ---- Thumbnail (Icon) ---- */
+element-icon {
+  size: 240px; 
+  cursor: inherit;
+  border-radius: 3px;
+  background-color: transparent;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+}
+
+/* ---- Hide Name ---- */
+element-text {
+  enabled: false;
+}
+
+/* ---- Messages ---- */
+error-message {
+  padding: 10px;
+  background-color: @background;
+  text-color: @foreground;
+}

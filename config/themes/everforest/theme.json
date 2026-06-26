@@ -1,0 +1,22 @@
+{
+  "bg": "#191723",
+  "fg": "#e0def4",
+
+  "surface": "#1f1d2e",
+  "surface_alpha": "#1f1d2e80",
+  "on_surface": "#e0def4",
+  "surface_container_highest": "#26233a",
+  "surface_bright": "#6e6a86",
+
+  "primary": "#ebbcba",
+  "primary_fixed": "#ebbcba",
+  "on_primary": "#26233a",
+  "inverse_primary": "#31748f",
+  "tertiary": "#c4a7e7",
+  "error": "#eb6f92",
+  "warning": "#f6c177",
+  "success": "#9ccfd8",
+
+  "hover": "#9ccfd8",
+  "selected": "#21202e"
+}

@@ -1,0 +1,11 @@
+* {
+	surface: #3B4252;
+	surface-container-highest: #434C5E;
+	surface-alpha: rgba(59, 66, 82, 0.5);
+	on-surface: #D8DEE9;
+	primary-fixed: #88C0D0;
+	primary-fixed-alpha: rgba(136, 192, 208, 0.2);
+	tertiary: #8FBCBB;
+	error: #BF616A;
+	selected: #434C5E;
+}

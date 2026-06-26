@@ -1,0 +1,82 @@
+-- #  ┓┏┏┓┳┓┳┏┓┳┓┓ ┏┓┏┓
+-- #  ┃┃┣┫┣┫┃┣┫┣┫┃ ┣ ┗┓
+-- #  ┗┛┛┗┛┗┻┛┗┻┛┗┛┗┛┗┛
+-- #
+--
+--
+--
+-- #  ┏┓┳┓┓┏  ┓┏┏┓┳┓┏┓
+-- #  ┣ ┃┃┃┃  ┃┃┣┫┣┫┗┓
+-- #  ┗┛┛┗┗┛  ┗┛┛┗┛┗┗┛
+-- #
+--
+-- # Cursors
+-- env = XCURSOR_SIZE,24
+-- env = HYPRCURSOR_SIZE,24
+--
+-- # Force all apps to use Wayland
+-- env = GDK_BACKEND,wayland,x11,*
+--
+-- # GTK variables
+-- env = GTK_THEME, Adwaita-dark
+-- env = GTK_APPLICATION_PREFER_DARK_THEME, 1
+--
+-- # Qt variables
+-- env = QT_QPA_PLATFORMTHEME,qt5ct
+-- # env = QT_STYLE_OVERRIDE,kvantum
+-- env = QT_AUTO_SCREEN_SCALE_FACTOR,1
+-- env = QT_SCALE_FACTOR,1
+-- env = QT_QPA_PLATFORM,wayland;xcb
+-- env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
+-- env = QT_QUICK_CONTROLS_STYLE,org.hyprland.style   # hyprland-qt-support
+--
+-- # XDG specifications
+-- env = XDG_SESSION_TYPE, wayland
+-- env = XDG_CURRENT_DESKTOP, Hyprland
+-- env = XDG_SESSION_DESKTOP, Hyprland
+--
+-- # Keyring
+-- env = GNOME_KEYRING_CONTROL,$XDG_RUNTIME_DIR/keyring
+-- env = SSH_AUTH_SOCK,$XDG_RUNTIME_DIR/gcr/ssh
+-- env = LIBSECRET_BACKEND,gnome-keyring
+-- env = GTK_USE_PORTAL,1
+--
+-- # Paths
+-- env = PATH,$PATH:$HOME/.local/share/relaxou/bin
+
+-- Theming Related
+-- hl.env("XCURSOR_SIZE", "24")
+-- hl.env("HYPRCURSOR_SIZE", "24")
+
+-- Toolkit Backend Variables
+-- hl.env("GDK_BACKEND", "wayland,x11,*")
+-- hl.env("QT_QPA_PLATFORM", "wayland;xcb")
+
+-- XDG Specifications
+-- hl.env("XDG_SESSION_TYPE", "wayland")
+-- hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+-- hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+
+-- GTK Variables
+-- hl.env("GTK_THEME", "Adwaita-dark")
+-- hl.env("GTK_APPLICATION_PREFER_DARK_THEME", "1")
+
+-- QT Variables
+-- hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
+-- hl.env("QT_QPA_PLATFORM", "wayland;xcb")
+-- hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
+-- hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
+
+-- Keyring
+-- hl.env("GNOME_KEYRING_CONTROL", "$XDG_RUNTIME_DIR/keyring")
+-- hl.env("SSH_AUTH_SOCK", "$XDG_RUNTIME_DIR/gcr/ssh")
+-- hl.env("LIBSECRET_BACKEND", "gnome-keyring")
+-- hl.env("GTK_USE_PORTAL", "1")
+
+-- NVIDIA
+-- hl.env("GBM_BACKEND", "nvidia-drm")
+-- hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+-- hl.env("LIBVA_DRIVER_NAME", "nvidia")
+
+-- Home Path
+-- hl.env("PATH", "$PATH:$HOME/.local/share/relaxou/bin")
