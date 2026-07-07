@@ -1,19 +1,24 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
   configs = {
     hypr = "hypr";
+    kitty = "kitty";
     foot = "foot";
     themes = "themes";
-    nvim = "nvim";
+    quickshell = "quickshell";
+    yazi = "yazi";
   };
 in {
   imports = [
+    ./modules/zsh.nix
     ./modules/neovim.nix
+    ./modules/tmux.nix
   ];
 
   home.username = "relaxou";
@@ -30,24 +35,6 @@ in {
     };
   };
 
-  programs.zsh = {
-    enable = true;
-    shellAliases = {
-      btw = "echo i use nixos, btw";
-      nrs = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos";
-      cd = "z";
-    };
-    setOptions = [
-      "HIST_IGNORE_DUPS"
-      "HIST_IGNORE_SPACE"
-      "SHARE_HISTORY"
-    ];
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-    autosuggestion.enable = true;
-  };
-  programs.zoxide.enable = true;
-
   xdg.configFile =
     builtins.mapAttrs
     (name: subpath: {
@@ -56,12 +43,22 @@ in {
     })
     configs;
 
+  home.sessionPath = [
+    "${config.home.homeDirectory}/nixos-dotfiles/scripts"
+  ];
+
   home.packages = with pkgs; [
-    ripgrep
-    cargo
-    nodejs
-    gcc
+    kitty
     foot
+    yazi
+    # quickshell
+    # inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    quickshell
+    awww
+    # zen
+    # inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    zen-browser
+    # Nix Search
     (pkgs.writeShellApplication {
       name = "ns";
       runtimeInputs = with pkgs; [

@@ -1,0 +1,19 @@
+[opener]
+edit = [
+	{ run = '$EDITOR %s', block = true, for = "unix" },
+]
+open = [
+	{ run = 'xdg-open %1', orphan = true, for = "linux" },
+]
+view = [
+	{ run = 'mupdf %1', orphan = true, for = "linux" },
+]
+
+[open]
+rules = [
+	{ mime = "text/*",          use = [ "edit", "open" ] },
+	{ mime = "image/*",         use = [ "view", "open" ] },
+	{ mime = "application/pdf", use = [ "view", "open" ] },
+	{ mime = "{audio,video}/*", use = [ "open" ] },
+	{ url  = "*",               use = [ "open" ] },
+]

@@ -4,7 +4,7 @@ local waybarScripts = home .. "/.config/waybar/scripts"
 local rofiScripts = home .. "/.config/rofi/scripts"
 
 -- Programs
-local terminal = "foot"
+local terminal = "kitty"
 local fileManager = "yazi"
 local menu = "wofi"
 local browser = "vivaldi-stable"

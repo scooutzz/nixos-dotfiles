@@ -8,17 +8,6 @@
     ./hardware-configuration.nix
   ];
 
-  # VM only
-  virtualisation.virtualbox.guest = {
-    enable = true;
-    dragAndDrop = true;
-  };
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSOR = "1";
-    WLR_RENDERER_ALLOW_SOFTWARE = "1";
-  };
-  boot.kernelParams = ["rcu_update.rcu_cpu_stall_timeout=300"];
-
   boot.loader.systemd-boot.enable = false;
   boot.loader.grub = {
     enable = true;
@@ -40,6 +29,8 @@
       };
     };
   };
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -50,6 +41,9 @@
     enable = true;
     pulse.enable = true;
   };
+
+  services.openssh.enable = true;
+  services.tailscale.enable = true;
 
   programs.zsh.enable = true;
 

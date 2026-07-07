@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+# Theme Switcher
+
+THEMES=(
+  "rose-pine"
+  "tokyo-night"
+  "catppuccinno-mocha"
+  "gruvbox"
+  "gruvbox-material"
+  "everforest"
+  "nord"
+)
+
+function list_themes() {
+  for theme in "${THEMES[@]}"; do
+    echo "  - $theme"
+  done
+}
+
+if [ -z "$1" ]; then
+  echo "Use: $0 <theme>"
+  echo "Available Themes:"
+  for theme in "${THEMES[@]}"; do
+    echo "  - $theme"
+  done
+  exit 1
+fi
+
+# Mapping
+# Kitty | Neovim
+declare -A THEME_MAP=(
+  ["rose-pine"]="Rosé Pine | rose-pine"
+  ["tokyo-night"]="Tokyo Night | tokyonight-night"
+  ["catppuccin-mocha"]="Catppuccin-Mocha | catppuccin-mocha"
+  ["gruvbox"]="Gruvbox Dark | gruvbox-material"
+  ["gruvbox-material"]="Gruvbox Material Dark Medium | gruvbox-material"
+  ["everforest"]="Everforest Dark Medium | everforest"
+  ["nord"]="Nord | nord")
+
+THEME="$1"
+
+if [ -z "${THEME_MAP[$THEME]}" ]; then
+  echo "Theme '$THEME' not configured yet... Try one of the following:"
+  list_themes
+  exit 1
+fi
+
+IFS='|' read -r KITTY_THEME NVIM_THEME <<<"${THEME_MAP[$THEME]}"
+KITTY_THEME=$(echo "$KITTY_THEME" | xargs)
+NVIM_THEME=$(echo "$NVIM_THEME" | xargs)
+
+if [[ -n "$KITTY_THEME" ]]; then
+  echo "Updating Kitty..."
+  kitty +kitten themes --dump-theme "$KITTY_THEME" >"$HOME/.config/kitty/current-theme.conf"
+  kill -SIGUSR1 $(pgrep kitty)
+fi
+
+if [[ -n "$NVIM_THEME" ]]; then
+  echo "Updating Neovim..."
+  echo "$THEME" >"$HOME/.local/state/nvim/current-theme"
+  while IFS= read -r server; do
+    nvim --server "$server" --remote-expr "execute('colorscheme $NVIM_THEME')"
+  done < <(find "/run/user/$(id -u)" -name "nvim.*.0" 2>/dev/null)
+fi
+
+THEME_DIR="$HOME/.config/themes/$THEME"
+
+if [[ ! -d "$THEME_DIR" ]]; then
+  notify-send "Theme Switcher" "Theme directory for theme '$THEME' does not exist." --icon=dialog-warning
+  exit 1
+fi
+
+# Link Foot
+ln -sf "$THEME_DIR/colors.ini" "$HOME/.config/foot/colors.ini"
+
+# Reload Quickshell
+cp "$THEME_DIR/theme.json" "$HOME/.config/quickshell/theme.json"
+echo "$1" >~/.cache/current_theme
+
+# Link Hyprland
+ln -sf "$THEME_DIR/colors-hyprland.conf" "$HOME/.config/hypr/ui/colors.conf"
+ln -sf "$THEME_DIR/colors-hyprland.lua" "$HOME/.config/hypr/ui/colors.lua"
+hyprctl reload
+
+# Link Backgrounds
+ln -sf -n "$THEME_DIR/backgrounds" "$HOME/.config/backgrounds"
+WALLS_DIR="$THEME_DIR/backgrounds"
+WALL=$(find "$WALLS_DIR" -maxdepth 1 -type f | sort | head -n 1)
+awww img "$WALL" --transition-type fade --transition-step 90 --transition-duration 0.5
+sed -i "s|^\$image = .*|\$image = $WALL|" "$HOME/.config/hypr/ui/image.conf"
+
+# Notify theme switched
+notify-send "Theme Switcher" "Switched to theme '$THEME'." --icon=dialog-information
