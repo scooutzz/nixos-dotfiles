@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }: let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
@@ -16,6 +15,7 @@
   };
 in {
   imports = [
+    ./modules/git.nix
     ./modules/zsh.nix
     ./modules/neovim.nix
     ./modules/tmux.nix
@@ -24,16 +24,6 @@ in {
   home.username = "relaxou";
   home.homeDirectory = "/home/relaxou";
   home.stateVersion = "26.05";
-
-  programs.git = {
-    enable = true;
-    settings = {
-      user.name = "Fabio de Almeida";
-      user.email = "fabioalmeida2004@gmail.com";
-      init.defaultBranch = "main";
-      core.editor = "nvim";
-    };
-  };
 
   xdg.configFile =
     builtins.mapAttrs
@@ -51,12 +41,10 @@ in {
     kitty
     foot
     yazi
-    # quickshell
-    # inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # qs
     quickshell
     awww
-    # zen
-    # inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # browser
     zen-browser
     # Nix Search
     (pkgs.writeShellApplication {
