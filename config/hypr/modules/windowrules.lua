@@ -33,41 +33,6 @@ hl.window_rule({
 	no_focus = true,
 })
 
--- Opacity by default
-hl.window_rule({
-	name = "opacity",
-	match = {
-		class = ".*",
-	},
-	opacity = "0.8 0.8",
-})
-
--- No transparency windows
-hl.window_rule({
-	name = "no-transparency",
-	match = {
-		class = "^(zoom|vlc|mpv|org.kde.kdenlive|com.obsproject.Studio|com.github.PintaProject.Pinta|imv|org.gnome.NautilusPreviewer)$",
-	},
-	opacity = "1.0 1.0",
-})
-
-hl.window_rule({
-	name = "no-yt-transparency",
-	match = {
-		class = ".*vivaldi.*",
-		title = ".*[yY]ou[tT]ube.*",
-	},
-	opacity = "1.0 1.0",
-})
-
-hl.window_rule({
-	name = "no-transparency-pip",
-	match = {
-		title = "^(Picture in picture)$",
-	},
-	opacity = "1.0 1.0",
-})
-
 -- Floating windows
 hl.window_rule({
 	name = "floating-big",

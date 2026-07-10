@@ -1,1 +1,1 @@
-/home/relaxou/.config/themes/gruvbox/colors-hyprland.lua
+/home/relaxou/.config/themes/rose-pine/colors-hyprland.lua

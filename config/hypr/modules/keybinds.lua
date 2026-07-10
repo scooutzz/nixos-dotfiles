@@ -1,12 +1,9 @@
 local home = os.getenv("HOME")
 local scripts = home .. "/.config/hypr/scripts"
-local waybarScripts = home .. "/.config/waybar/scripts"
-local rofiScripts = home .. "/.config/rofi/scripts"
 
 -- Programs
 local terminal = "kitty"
 local fileManager = "yazi"
-local menu = "wofi"
 local browser = "vivaldi-stable"
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
@@ -14,6 +11,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 -- Window Management
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.layout("togglesplit"))
 
@@ -30,17 +28,12 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " -e " .. fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("hyprpicker -a"))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(waybarScripts .. "/reload"))
 
--- Custom rofi launchers
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(rofiScripts .. "/wallSelect.sh"))
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(rofiScripts .. "/launcher"))
-hl.bind(mainMod .. " +  ALT + D", hl.dsp.exec_cmd(rofiScripts .. "/launcher-style-changer"))
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(rofiScripts .. "/menu.sh"))
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(rofiScripts .. "/menu.sh themes"))
-hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd(rofiScripts .. "/cliphist.sh"))
-hl.bind(mainMod .. " + SEMICOLON", hl.dsp.exec_cmd(rofiScripts .. "/rofiEmoji.sh"))
-hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd(rofiScripts .. "/websearch.sh"))
+-- Quickshell
+hl.bind(mainMod .. " + Escape", hl.dsp.global("quickshell:power_menu"))
+hl.bind(mainMod .. " + D", hl.dsp.global("quickshell:app_launcher"))
+hl.bind(mainMod .. " + T", hl.dsp.global("quickshell:theme_switcher"))
+hl.bind(mainMod .. " + W", hl.dsp.global("quickshell:wall_selector"))
 
 -- Screenshots
 hl.bind("Print", hl.dsp.exec_cmd("screenshot"))
@@ -119,6 +112,3 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
-
--- Quickshell
-hl.bind(mainMod .. " + Escape", hl.dsp.global("quickshell:toggle_power"))
