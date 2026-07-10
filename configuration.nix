@@ -62,6 +62,11 @@
     xwayland.enable = true;
   };
 
+  security.polkit = {
+    enable = true;
+    enablePkexecWrapper = true;
+  };
+
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -80,10 +85,10 @@
   };
   nix.settings.auto-optimise-store = true;
 
-  # system.autoUpgrade = {
-  #   enable = true;
-  #   dates = "weekly";
-  # };
+  system.autoUpgrade = {
+    enable = true;
+    dates = "weekly";
+  };
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   system.stateVersion = "26.05";
