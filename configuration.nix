@@ -67,7 +67,11 @@
     enablePkexecWrapper = true;
   };
 
-  programs.firefox.enable = true;
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
 
   environment.systemPackages = with pkgs; [
     vim
@@ -77,6 +81,8 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
+
+  programs.firefox.enable = true;
 
   nix.gc = {
     automatic = true;

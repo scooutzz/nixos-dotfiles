@@ -33,10 +33,6 @@ in {
     })
     configs;
 
-  home.sessionPath = [
-    "${config.home.homeDirectory}/nixos-dotfiles/scripts"
-  ];
-
   home.packages = with pkgs; [
     kitty
     foot
@@ -56,4 +52,26 @@ in {
       text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
     })
   ];
+
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 20;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/nixos-dotfiles/scripts"
+  ];
+
+  home.sessionVariables = {
+    TERMINAL = "kitty";
+    EDITOR = "nvim";
+
+    GDK_BACKEND = "wayland,x11,*";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+  };
 }
