@@ -29,6 +29,8 @@
       prompt='%F{8}''${name:+[$name] }%f%F{green}%n%f %F{blue}%(3~|../%2~|%2~)%f ''${vcs_info_msg_0_}%F{white}$%f '
 
       bindkey -s ^f "tmux-sessionizer\n"
+
+      nitch
     '';
     enableCompletion = true;
     syntaxHighlighting.enable = true;
@@ -39,5 +41,6 @@
   home.packages = with pkgs; [
     eza
     bat
+    nitch
   ];
 }
