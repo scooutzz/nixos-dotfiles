@@ -11,6 +11,7 @@ in {
     # Dependencies
     ripgrep
     tree-sitter
+    gcc
     # Servers
     nil
     alejandra
