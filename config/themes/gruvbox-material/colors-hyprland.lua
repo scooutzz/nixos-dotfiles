@@ -1,0 +1,18 @@
+local M = {
+	background = "rgba(282828ff)",
+	foreground = "rgba(d4be98ff)",
+	surface = "rgba(32302fff)",
+	on_surface = "rgba(d4be98ff)",
+	primary = "rgba(7daea3ff)",
+	on_primary = "rgba(282828ff)",
+	inverse_primary = "rgba(d3869bff)",
+	tertiary = "rgba(89b482ff)",
+	error = "rgba(ea6962ff)",
+	warning = "rgba(d8a657ff)",
+	success = "rgba(a9b665ff)",
+	hover = "rgba(e78a4eff)",
+	selected = "rgba(45403dff)",
+	surface_alpha = "rgba(32302f80)",
+}
+
+return M

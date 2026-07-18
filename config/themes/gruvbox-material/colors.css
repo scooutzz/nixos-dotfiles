@@ -1,0 +1,20 @@
+@define-color background #282828;
+@define-color foreground #d4be98;
+
+@define-color surface #32302f;
+@define-color surface-alpha rgba(50, 48, 47, 0.5);
+@define-color on_surface #d4be98;
+@define-color surface_container_highest #5a524c;
+@define-color surface_bright #7c6f64;
+
+@define-color primary #7daea3;
+@define-color primary_fixed #7daea3;
+@define-color on_primary #282828;
+@define-color inverse_primary #d3869b;
+@define-color tertiary #89b482;
+@define-color error #ea6962;
+@define-color warning #d8a657;
+@define-color success #a9b665;
+
+@define-color hover #e78a4e;
+@define-color selected #45403d;
